@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+const URL = import.meta.env.VITE_API_BACK_END || 'http://localhost:3001';  
 function Login({ onLoginSuccess }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -7,7 +7,7 @@ function Login({ onLoginSuccess }) {
 
   const handleLogin = async () => {
     try {
-      const res = await fetch('http://localhost:3001/login', {
+      const res = await fetch(`${ URL }/login` , {
         method: 'POST',
         credentials: 'include', // ✅ Necesario para enviar la cookie
         headers: { 'Content-Type': 'application/json' },
