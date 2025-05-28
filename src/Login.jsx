@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 // ✅ URL dinámica que permite despliegue en Railway u otros entornos
-const URL = import.meta.env.VITE_API_BACK_END?.trim() || 'http://localhost:3001';
+const URL = import.meta.env.VITE_API_BACK_END?.trim();
 
 function Login({ onLoginSuccess }) {
   const [email, setEmail] = useState('');

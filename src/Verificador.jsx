@@ -6,7 +6,7 @@ import {
 } from 'react-icons/fa';
 import 'react-toastify/dist/ReactToastify.css';
 
-const URL = import.meta.env.VITE_API_BACK_END?.trim() || 'http://localhost:3001';
+const URL = import.meta.env.VITE_API_BACK_END?.trim();
 
 function Verificador({ onLogout }) {
   const navigate = useNavigate();

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 // ✅ Usa variable de entorno para distinguir entre local y producción
-const URL = import.meta.env.VITE_API_BACK_END?.trim() || 'http://localhost:3001';
+const URL = import.meta.env.VITE_API_BACK_END?.trim();
 
 function Registro() {
   const [email, setEmail] = useState('');
