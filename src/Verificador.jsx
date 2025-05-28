@@ -224,19 +224,20 @@ function Verificador({ onLogout }) {
   );
 
   return (
-    <div className="max-w-6xl mx-auto p-6 relative min-h-screen">
-      <button
+    <div className="flex justify-center p-6 min-h-screen">
+      <div className="w-full max-w-6xl">
+        <button
         onClick={cerrarSesion}
         className="absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 flex items-center gap-2"
-      >
+        >
         <FaSignOutAlt /> Cerrar sesión
-      </button>
+        </button>
 
-      <h1 className="text-3xl font-bold mb-4 text-center text-blue-600">Verificador de Precios</h1>
-      {usuario && (
-        <p className="text-center mb-6 text-gray-700">
-          Sesión iniciada como: <strong>{usuario}</strong>
-        </p>
+        <h1 className="text-3xl font-bold mb-4 text-center text-blue-600">Verificador de Precios</h1>
+        {usuario && (
+          <p className="text-center mb-6 text-gray-700">
+            Sesión iniciada como: <strong>{usuario}</strong>
+          </p>
       )}
 
       <form
@@ -334,7 +335,7 @@ function Verificador({ onLogout }) {
           Siguiente
         </button>
       </div>
-
+      </div>
       <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
