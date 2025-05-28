@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-const URL = import.meta.env.VITE_API_BACK_END || 'http://localhost:3001';
+// ✅ Usa variable de entorno para distinguir entre local y producción
+const URL = import.meta.env.VITE_API_BACK_END?.trim() || 'http://localhost:3001';
 
 function Registro() {
   const [email, setEmail] = useState('');
@@ -10,6 +11,11 @@ function Registro() {
   const navigate = useNavigate();
 
   const registrar = async () => {
+    if (!email || !password) {
+      toast.error('Todos los campos son obligatorios');
+      return;
+    }
+
     try {
       const res = await fetch(`${URL}/crear-usuario`, {
         method: 'POST',
@@ -27,7 +33,7 @@ function Registro() {
       }
     } catch (err) {
       console.error('Error de red:', err);
-      toast.error('Error de red');
+      toast.error('No se pudo conectar con el servidor');
     }
   };
 
@@ -40,6 +46,7 @@ function Registro() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         className="w-full mb-2 p-2 border rounded"
+        required
       />
       <input
         type="password"
@@ -47,6 +54,7 @@ function Registro() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         className="w-full mb-2 p-2 border rounded"
+        required
       />
       <button
         onClick={registrar}

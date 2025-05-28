@@ -1,29 +1,28 @@
+
 import { useEffect, useState } from 'react';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import Login from './Login';
 import Verificador from './Verificador';
 import Registro from './Registro';
 
+const URL = import.meta.env.VITE_API_BACK_END;
+
 function App() {
   const [logueado, setLogueado] = useState(false);
   const [verificando, setVerificando] = useState(true);
   const navigate = useNavigate();
 
-  // ✅ Reemplaza con tu URL de backend desplegado
-  const API_URL = 'https://backendverificadorprecios-production.up.railway.app';
-
   useEffect(() => {
     const verificarSesion = async () => {
       try {
-        const res = await fetch(`${API_URL}/productos`, {
+        const res = await fetch(`${URL}/productos`, {
           method: 'GET',
           credentials: 'include',
         });
 
         setLogueado(res.ok);
         if (res.ok) navigate('/verificador');
-      } catch (error) {
-        console.error('Error al verificar sesión:', error);
+      } catch {
         setLogueado(false);
       } finally {
         setVerificando(false);
@@ -35,12 +34,12 @@ function App() {
 
   const handleLogout = async () => {
     try {
-      await fetch(`${API_URL}/logout`, {
+      await fetch(`${URL}/logout`, {
         method: 'POST',
         credentials: 'include',
       });
-    } catch (error) {
-      console.error('Error al cerrar sesión:', error);
+    } catch {
+      console.error('Error al cerrar sesión');
     } finally {
       setLogueado(false);
       navigate('/login');

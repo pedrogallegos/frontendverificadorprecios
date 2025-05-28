@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
-const URL = import.meta.env.VITE_API_BACK_END || 'http://localhost:3001';
+// ✅ URL dinámica que permite despliegue en Railway u otros entornos
+const URL = import.meta.env.VITE_API_BACK_END?.trim() || 'http://localhost:3001';
 
 function Login({ onLoginSuccess }) {
   const [email, setEmail] = useState('');
@@ -11,7 +12,7 @@ function Login({ onLoginSuccess }) {
     try {
       const res = await fetch(`${URL}/login`, {
         method: 'POST',
-        credentials: 'include', // Necesario para enviar cookies
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -27,7 +28,7 @@ function Login({ onLoginSuccess }) {
       }
     } catch (err) {
       console.error('Error de conexión:', err);
-      setError('Error de conexión con el servidor');
+      setError('No se pudo conectar con el servidor');
     }
   };
 
@@ -40,6 +41,7 @@ function Login({ onLoginSuccess }) {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         className="mb-2 w-full p-2 border rounded"
+        required
       />
       <input
         type="password"
@@ -47,6 +49,7 @@ function Login({ onLoginSuccess }) {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         className="mb-2 w-full p-2 border rounded"
+        required
       />
       <button
         onClick={handleLogin}
