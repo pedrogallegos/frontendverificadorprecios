@@ -9,17 +9,21 @@ function App() {
   const [verificando, setVerificando] = useState(true);
   const navigate = useNavigate();
 
+  // ✅ Reemplaza con tu URL de backend desplegado
+  const API_URL = 'https://backendverificadorprecios-production.up.railway.app';
+
   useEffect(() => {
     const verificarSesion = async () => {
       try {
-        const res = await fetch('http://localhost:3001/productos', {
+        const res = await fetch(`${API_URL}/productos`, {
           method: 'GET',
           credentials: 'include',
         });
 
         setLogueado(res.ok);
         if (res.ok) navigate('/verificador');
-      } catch {
+      } catch (error) {
+        console.error('Error al verificar sesión:', error);
         setLogueado(false);
       } finally {
         setVerificando(false);
@@ -31,7 +35,7 @@ function App() {
 
   const handleLogout = async () => {
     try {
-      await fetch('http://localhost:3001/logout', {
+      await fetch(`${API_URL}/logout`, {
         method: 'POST',
         credentials: 'include',
       });

@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
+const URL = import.meta.env.VITE_API_BACK_END || 'http://localhost:3001';
+
 function Registro() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -9,7 +11,7 @@ function Registro() {
 
   const registrar = async () => {
     try {
-      const res = await fetch('http://localhost:3001/crear-usuario', {
+      const res = await fetch(`${URL}/crear-usuario`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -23,7 +25,8 @@ function Registro() {
       } else {
         toast.error(data.error || 'Error al registrar');
       }
-    } catch {
+    } catch (err) {
+      console.error('Error de red:', err);
       toast.error('Error de red');
     }
   };
