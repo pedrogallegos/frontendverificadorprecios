@@ -66,7 +66,7 @@ function Verificador({ onLogout }) {
 
   const cerrarSesion = async () => {
     try {
-      await fetch(`${URL}/logout`, { method: 'POST', credentials: 'include' });
+      await fetch(`${URL}/api/usuarios/logout`, { method: 'POST', credentials: 'include' });
       toast.info('Sesión cerrada correctamente');
       onLogout();
       navigate('/login');
@@ -91,7 +91,7 @@ function Verificador({ onLogout }) {
     };
 
     try {
-      const res = await fetch(`${URL}/api/producto`, {
+      const res = await fetch(`${URL}/api/productos`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -118,7 +118,7 @@ function Verificador({ onLogout }) {
     }
 
     try {
-      const res = await fetch(`${URL}/api/producto/${idActual}`, {
+      const res = await fetch(`${URL}/api/productos/${idActual}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -146,7 +146,7 @@ function Verificador({ onLogout }) {
 
   const eliminarProducto = async (id) => {
     try {
-      const res = await fetch(`${URL}/api/producto/${id}`, {
+      const res = await fetch(`${URL}/api/productos/${id}`, {
         method: 'DELETE',
         credentials: 'include',
       });
@@ -169,7 +169,7 @@ function Verificador({ onLogout }) {
     }
 
     try {
-      const res = await fetch(`${URL}/api/precio/${codigoBusqueda}`);
+      const res = await fetch(`${URL}/api/productos/precio/${codigoBusqueda}`);
       const data = await res.json();
 
       if (res.ok) {
