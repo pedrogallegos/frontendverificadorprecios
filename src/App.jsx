@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import Login from './Login';
@@ -15,7 +14,7 @@ function App() {
   useEffect(() => {
     const verificarSesion = async () => {
       try {
-        const res = await fetch(`${URL}/productos`, {
+        const res = await fetch(`${URL}/api/usuarios/perfil`, {
           method: 'GET',
           credentials: 'include',
         });
@@ -34,7 +33,7 @@ function App() {
 
   const handleLogout = async () => {
     try {
-      await fetch(`${URL}/logout`, {
+      await fetch(`${URL}/api/usuarios/logout`, {
         method: 'POST',
         credentials: 'include',
       });

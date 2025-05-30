@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-// ✅ URL dinámica que permite despliegue en Railway u otros entornos
 const URL = import.meta.env.VITE_API_BACK_END?.trim();
 
 function Login({ onLoginSuccess }) {
@@ -10,7 +9,7 @@ function Login({ onLoginSuccess }) {
 
   const handleLogin = async () => {
     try {
-      const res = await fetch(`${URL}/login`, {
+      const res = await fetch(`${URL}/api/usuarios/login`, {
         method: 'POST',
         credentials: 'include',
         headers: {

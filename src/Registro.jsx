@@ -17,7 +17,7 @@ function Registro() {
     }
 
     try {
-      const res = await fetch(`${URL}/crear-usuario`, {
+      const res = await fetch(`${URL}/api/usuarios/crear`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),

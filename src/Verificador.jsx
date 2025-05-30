@@ -29,7 +29,7 @@ function Verificador({ onLogout }) {
   useEffect(() => {
     const obtenerPerfil = async () => {
       try {
-        const res = await fetch(`${URL}/perfil`, { credentials: 'include' });
+        const res = await fetch(`${URL}/api/usuarios/perfil`, { credentials: 'include' });
         const data = await res.json();
         setUsuario(data.email);
       } catch {
@@ -41,7 +41,7 @@ function Verificador({ onLogout }) {
 
   const fetchProductos = async () => {
     try {
-      const res = await fetch(`${URL}/productos`, { credentials: 'include' });
+      const res = await fetch(`${URL}/api/productos`, { credentials: 'include' });
       if (!res.ok) throw new Error();
       const data = await res.json();
       setProductos(data);
@@ -91,7 +91,7 @@ function Verificador({ onLogout }) {
     };
 
     try {
-      const res = await fetch(`${URL}/producto`, {
+      const res = await fetch(`${URL}/api/producto`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -118,7 +118,7 @@ function Verificador({ onLogout }) {
     }
 
     try {
-      const res = await fetch(`${URL}/producto/${idActual}`, {
+      const res = await fetch(`${URL}/api/producto/${idActual}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -146,7 +146,7 @@ function Verificador({ onLogout }) {
 
   const eliminarProducto = async (id) => {
     try {
-      const res = await fetch(`${URL}/producto/${id}`, {
+      const res = await fetch(`${URL}/api/producto/${id}`, {
         method: 'DELETE',
         credentials: 'include',
       });
@@ -169,7 +169,7 @@ function Verificador({ onLogout }) {
     }
 
     try {
-      const res = await fetch(`${URL}/precio/${codigoBusqueda}`);
+      const res = await fetch(`${URL}/api/precio/${codigoBusqueda}`);
       const data = await res.json();
 
       if (res.ok) {
