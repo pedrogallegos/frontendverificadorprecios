@@ -20,6 +20,9 @@ function Login({ onLoginSuccess }) {
 
       if (res.ok) {
         setError('');
+        setTimeout(() => {
+          onLoginSuccess();
+        },100); //Delay para evitar problemas de sincronización
         onLoginSuccess();
       } else {
         const data = await res.json();

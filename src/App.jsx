@@ -4,7 +4,7 @@ import Login from './Login';
 import Verificador from './Verificador';
 import Registro from './Registro';
 
-const URL = import.meta.env.VITE_API_BACK_END;
+const URL = import.meta.env.VITE_API_BACK_END?.trim();
 
 function App() {
   const [logueado, setLogueado] = useState(false);
@@ -20,7 +20,6 @@ function App() {
         });
 
         setLogueado(res.ok);
-        if (res.ok) navigate('/verificador');
       } catch {
         setLogueado(false);
       } finally {
@@ -29,7 +28,7 @@ function App() {
     };
 
     verificarSesion();
-  }, [navigate]);
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -57,7 +56,10 @@ function App() {
           logueado ? (
             <Navigate to="/verificador" />
           ) : (
-            <Login onLoginSuccess={() => setLogueado(true)} />
+            <Login onLoginSuccess={() => {
+              setLogueado(true);
+              navigate('/verificador');
+            }} />
           )
         }
       />
